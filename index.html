@@ -1,445 +1,427 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NIVRA Safety Portal</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500&display=swap"
-    rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
-  <style>
-    body,
-    p {
-      font-family: 'DM Sans', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Virtual Data Team — Automated Analytics for Growing Businesses</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #0c0c0f;
+  --surface: #131318;
+  --surface2: #1a1a22;
+  --border: rgba(255,255,255,0.07);
+  --accent: #00e5a0;
+  --accent2: #7c6bff;
+  --accent3: #ff6b6b;
+  --text: #f0f0f5;
+  --muted: #6b6b80;
+  --card: rgba(255,255,255,0.03);
+}
 
-    h1,
-    h2,
-    h3 {
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 0.5px;
-      font-weight: 700;
-    }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
 
-    :root {
-      --primary: #000;
-      --accent: #7F00FF;
-      --text-soft: #5C5C5C;
-    }
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.4;
+}
 
-    body {
-      background: linear-gradient(145deg, #e8e1d5, #d6c8b4, #cfc0a9);
-      color: #222;
-    }
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(12,12,15,0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: var(--text); text-decoration: none; }
+.logo span { color: var(--accent); }
+nav ul { list-style: none; display: flex; gap: 32px; }
+nav ul a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+nav ul a:hover { color: var(--text); }
+.nav-cta { background: var(--accent); color: #000 !important; padding: 10px 22px; border-radius: 8px; font-weight: 600 !important; font-size: 14px; transition: opacity 0.2s !important; }
+.nav-cta:hover { opacity: 0.85; }
 
-    header {
-      padding: 3rem 1.5rem;
-      text-align: center;
-      background: linear-gradient(to bottom, #f5f0e6, #e4d7c7);
-      border-bottom: 1px solid #ddd2ba;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-      border-radius: 0 0 40px 40px;
-    }
+.hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 48px 80px; position: relative; overflow: hidden; }
+.hero-glow { position: absolute; width: 800px; height: 800px; background: radial-gradient(circle, rgba(0,229,160,0.08) 0%, transparent 70%); top: -200px; right: -200px; pointer-events: none; }
+.hero-glow2 { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(124,107,255,0.06) 0%, transparent 70%); bottom: -100px; left: -100px; pointer-events: none; }
+.hero-content { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,229,160,0.1); border: 1px solid rgba(0,229,160,0.2); color: var(--accent); padding: 6px 14px; border-radius: 100px; font-size: 13px; font-weight: 500; margin-bottom: 24px; }
+.hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+h1 { font-family: 'Syne', sans-serif; font-size: clamp(40px, 5vw, 64px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 24px; }
+h1 em { font-style: normal; color: var(--accent); }
+.hero-sub { font-size: 18px; color: var(--muted); line-height: 1.7; margin-bottom: 40px; font-weight: 300; max-width: 480px; }
+.hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.btn-primary { background: var(--accent); color: #000; padding: 14px 28px; border-radius: 10px; font-weight: 600; font-size: 15px; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,229,160,0.3); }
+.btn-secondary { color: var(--text); padding: 14px 28px; border-radius: 10px; font-weight: 500; font-size: 15px; text-decoration: none; border: 1px solid var(--border); transition: all 0.2s; background: var(--card); }
+.btn-secondary:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); }
+.hero-trust { margin-top: 40px; display: flex; align-items: center; gap: 16px; color: var(--muted); font-size: 13px; }
+.hero-trust-avatars { display: flex; }
+.hero-trust-avatars span { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--bg); display: flex; align-items: center; justify-content: center; font-size: 14px; margin-left: -8px; background: var(--surface2); }
+.hero-trust-avatars span:first-child { margin-left: 0; }
 
-    header h1 {
-      font-size: 2.75rem;
-    }
+.slack-preview { background: #1a1d21; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.5); animation: float 6s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+.slack-header { background: #19191d; padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.slack-dot { width: 12px; height: 12px; border-radius: 50%; }
+.slack-dot:nth-child(1) { background: #ff5f57; }
+.slack-dot:nth-child(2) { background: #febc2e; }
+.slack-dot:nth-child(3) { background: #28c840; }
+.slack-title { color: #aaaab4; font-size: 12px; margin-left: 8px; }
+.slack-body { padding: 16px; }
+.slack-msg { display: flex; gap: 10px; margin-bottom: 4px; }
+.slack-avatar { width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, var(--accent), var(--accent2)); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.slack-sender { font-size: 13px; font-weight: 600; color: #d1d2d3; }
+.slack-time { font-size: 11px; color: #666; margin-left: 6px; }
+.slack-text { font-size: 13px; color: #c9c9d4; line-height: 1.5; margin-top: 4px; }
+.slack-text strong { color: #fff; }
+.slack-text .green { color: var(--accent); }
+.slack-text .yellow { color: #febc2e; }
+.slack-text .red { color: var(--accent3); }
+.slack-divider { height: 1px; background: rgba(255,255,255,0.05); margin: 12px 0; }
 
-    header p {
-      font-size: 1.15rem;
-      color: var(--text-soft);
-      max-width: 680px;
-      margin: 1rem auto;
-    }
+section { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+.section-label { font-size: 12px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+h2 { font-family: 'Syne', sans-serif; font-size: clamp(32px, 4vw, 48px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 20px; }
+.section-sub { color: var(--muted); font-size: 18px; max-width: 560px; font-weight: 300; line-height: 1.7; }
 
-    .section {
-      padding: 4rem 1.5rem;
-      max-width: 1100px;
-      margin: 3rem auto;
-      background: #f6f2e8;
-      border-radius: 24px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-    }
+.how-wrapper { margin-top: 64px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+.how-step { background: var(--surface); padding: 32px 28px; position: relative; border: 1px solid var(--border); transition: border-color 0.3s; }
+.how-step:first-child { border-radius: 16px 0 0 16px; }
+.how-step:last-child { border-radius: 0 16px 16px 0; }
+.how-step:hover { border-color: rgba(0,229,160,0.3); }
+.how-num { font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800; color: rgba(255,255,255,0.05); line-height: 1; margin-bottom: 16px; }
+.how-icon { font-size: 28px; margin-bottom: 12px; }
+.how-step h3 { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.how-step p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.how-arrow { position: absolute; right: -14px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #000; z-index: 2; }
+.how-step:last-child .how-arrow { display: none; }
 
-    .features,
-    .gestures,
-    .why-nirva {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
+.features-grid { margin-top: 64px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.feature-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; transition: all 0.3s; position: relative; overflow: hidden; }
+.feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); opacity: 0; transition: opacity 0.3s; }
+.feature-card:hover { border-color: rgba(0,229,160,0.2); transform: translateY(-4px); background: rgba(255,255,255,0.04); }
+.feature-card:hover::before { opacity: 1; }
+.feature-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 20px; background: rgba(0,229,160,0.1); }
+.feature-card:nth-child(2) .feature-icon { background: rgba(124,107,255,0.1); }
+.feature-card:nth-child(3) .feature-icon { background: rgba(255,107,107,0.1); }
+.feature-card:nth-child(4) .feature-icon { background: rgba(254,188,46,0.1); }
+.feature-card:nth-child(5) .feature-icon { background: rgba(0,229,160,0.1); }
+.feature-card:nth-child(6) .feature-icon { background: rgba(124,107,255,0.1); }
+.feature-card h3 { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+.feature-card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
 
-    /* Mobile-specific override for even distribution */
-    @media (max-width: 600px) {
-      .features {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-    }
+.pricing-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 100px 48px; }
+.pricing-grid {
+  margin-top: 64px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: stretch;
+}
+.pricing-card {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+  position: relative;
+  transition: all 0.3s;
+  min-width: 0;
+}
+.pricing-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.15); }
+.pricing-card.featured { border-color: var(--accent); background: rgba(0,229,160,0.03); }
+.pricing-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 100px; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; }
+.pricing-tier { font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+.pricing-price { font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 4px; }
+.pricing-price span { font-size: 20px; font-weight: 400; color: var(--muted); letter-spacing: 0; }
+.pricing-desc { color: var(--muted); font-size: 14px; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+.pricing-features { list-style: none; margin-bottom: 32px; }
+.pricing-features li { font-size: 14px; color: var(--muted); padding: 8px 0; display: flex; align-items: center; gap: 10px; }
+.pricing-features li::before { content: '✓'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+.pricing-features li.dim::before { color: var(--muted); }
+.pricing-features li.dim { opacity: 0.5; }
+.btn-plan { display: block; text-align: center; padding: 13px; border-radius: 10px; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.2s; border: 1px solid var(--border); color: var(--text); background: transparent; }
+.btn-plan:hover { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.2); }
+.pricing-card.featured .btn-plan { background: var(--accent); color: #000; border-color: var(--accent); }
+.pricing-card.featured .btn-plan:hover { opacity: 0.85; }
+.free-trial-note { text-align: center; margin-top: 32px; color: var(--muted); font-size: 14px; }
+.free-trial-note strong { color: var(--accent); }
 
-    .why-nirva {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
+.testimonials-grid { margin-top: 64px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.testimonial-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; }
+.testimonial-stars { color: #febc2e; font-size: 14px; margin-bottom: 16px; }
+.testimonial-text { font-size: 15px; line-height: 1.7; color: var(--text); margin-bottom: 20px; font-style: italic; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.testimonial-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.testimonial-name { font-weight: 600; font-size: 14px; }
+.testimonial-role { font-size: 12px; color: var(--muted); }
 
-    .card {
-      background: #fefcf8;
-      border-radius: 20px;
-      padding: 2rem;
-      border: 1px solid #d3c6ae;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
+.cta-section { text-align: center; padding: 120px 48px; position: relative; overflow: hidden; }
+.cta-glow { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,229,160,0.1) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+.cta-section h2 { max-width: 700px; margin: 0 auto 20px; }
+.cta-section p { color: var(--muted); font-size: 18px; max-width: 480px; margin: 0 auto 40px; font-weight: 300; }
+.cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-    }
+footer { border-top: 1px solid var(--border); padding: 48px; display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; }
+.footer-copy { color: var(--muted); font-size: 13px; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+.footer-links a:hover { color: var(--text); }
 
-    .slider-container {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      overflow-x: auto;
-      padding: 1rem 0;
-    }
+.stat-bar { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 40px 48px; }
+.stat-bar-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; text-align: center; }
+.stat-num { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; color: var(--accent); letter-spacing: -1px; }
+.stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
 
-    .slide {
-      flex: 0 0 auto;
-      width: 280px;
-      text-align: center;
-    }
+.fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
 
-    .slide img {
-      width: 280px;
-      height: 280px;
-      object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease;
-    }
-
-    .slide img:hover {
-      transform: scale(1.03);
-    }
-
-    .cta-section {
-      text-align: center;
-      background: linear-gradient(to right, #e5d4b8, #f1e7d4);
-      padding: 4rem 1.5rem;
-    }
-
-    footer {
-      background: #f9f6ee;
-      text-align: center;
-      padding: 2rem;
-      color: #000;
-    }
-
-    /* Custom form styling */
-    .waitlist-form {
-      max-width: 800px;
-      margin: 0 auto;
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .waitlist-form input {
-      flex: 1;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-    }
-
-    .waitlist-form button {
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      background: var(--primary);
-      color: #fff;
-      font-size: 1.1rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .thank-you {
-      display: none;
-      margin-top: 2rem;
-      font-size: 1.2rem;
-      color: green;
-      font-weight: bold;
-    }
-
-    /* Mobile responsiveness */
-    @media (max-width: 600px) {
-      .slider-container {
-        flex-wrap: wrap;
-      }
-
-      .slider-container .slide {
-        flex: 1 1 100%;
-        max-width: 100%;
-      }
-
-      .waitlist-form {
-        flex-direction: column;
-      }
-
-      .waitlist-form input,
-      .waitlist-form button {
-        width: 100%;
-        margin: 0.5rem 0;
-      }
-
-      header {
-        padding: 2rem 1rem;
-      }
-
-      header h1 {
-        font-size: 2rem;
-      }
-
-      .section {
-        padding: 2rem 1rem;
-      }
-
-      .cta-section {
-        padding: 2rem 1rem;
-      }
-    }
-
-    .signup-section {
-      background: linear-gradient(110deg, #f7f4e8 60%, #e8e1d5 100%);
-      border-radius: 20px 20px 0 0;
-      box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.07);
-      max-width: 800px;
-      margin: 3rem auto 0 auto;
-      padding: 2.5rem 1.5rem 2rem 1.5rem;
-      text-align: center;
-    }
-
-    .signup-section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.5px;
-    }
-
-    .signup-section .signup-desc {
-      color: var(--text-soft, #5C5C5C);
-      font-size: 1.1rem;
-      margin-bottom: 1.8rem;
-    }
-
-    .signup-form {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      max-width: 420px;
-      margin: 0 auto 0.5rem auto;
-    }
-
-    .signup-form input[type="email"] {
-      flex: 1;
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-      font-family: inherit;
-      background: #fff;
-    }
-
-    .signup-form button {
-      background: #7F00FF;
-      color: #fff;
-      font-weight: 700;
-      border: none;
-      border-radius: 8px;
-      padding: 0.75rem 1.5rem;
-      font-size: 1.1rem;
-      letter-spacing: 0.5px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .signup-form button:hover {
-      background: #5a02b8;
-    }
-
-    /* Thank you message */
-    .signup-thankyou {
-      margin-top: 1.3rem;
-      color: #228B22;
-      font-weight: bold;
-      font-size: 1.16rem;
-    }
-
-    /* Responsive styles */
-    @media (max-width: 600px) {
-      .signup-section {
-        padding: 1.2rem 0.3rem 1.4rem 0.3rem;
-        border-radius: 12px 12px 0 0;
-      }
-
-      .signup-form {
-        flex-direction: column;
-        gap: 0.6rem;
-        max-width: 100%;
-      }
-
-      .signup-form input,
-      .signup-form button {
-        width: 100%;
-        margin: 0;
-      }
-    }
-  </style>
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  nav ul { display: none; }
+  .hero { padding: 100px 24px 60px; }
+  .hero-content { grid-template-columns: 1fr; gap: 48px; }
+  section { padding: 60px 24px; }
+  .how-wrapper { grid-template-columns: 1fr 1fr; }
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .pricing-grid { flex-direction: column; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .stat-bar-inner { grid-template-columns: repeat(2, 1fr); }
+  footer { flex-direction: column; gap: 24px; text-align: center; }
+}
+</style>
 </head>
-
 <body>
-  <header>
-    <img src="https://i.ibb.co/7t3v6d9R/Whats-App-Image-2025-06-30-at-01-16-38-removebg-preview.png" alt="NIVRA Logo"
-      style="width:90px;margin-bottom:-1rem;" />
-    <h1>NIVRA</h1>
-    <em style="display:block;font-size:1.1rem;color:var(--text-soft);">Built for emergency. Designed for everyday.</em>
-    <p>Luxury wearable with discreet emergency tech — designed for women and children, powered for confidence and care.
-    </p>
-  </header>
 
-  <section class="section" data-aos="fade-up">
-    <h2>Key Capabilities</h2>
-    <div class="features">
-      <div class="card">Emergency SOS — Trigger with a tap or press</div>
-      <div class="card">Live GPS — Share real-time location instantly</div>
-      <div class="card">Audio Buffer — Capture on-device audio clips</div>
-      <div class="card">Standalone GSM — No phone required</div>
-    </div>
-  </section>
+<nav>
+  <a href="#" class="logo">VDT<span>.</span></a>
+  <ul>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20my%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="nav-cta">Start Free Trial</a>
+</nav>
 
-  <section class="section" data-aos="fade-up">
-    <h2>Product Preview</h2>
-    <div class="slider-container">
-      <div class="slide"><img src="https://i.ibb.co/Q3frQjfb/Chat-GPT-Image-Jul-2-2025-05-19-45-AM.png"
-          alt="Front View" /></div>
-      <div class="slide"><img src="https://i.ibb.co/b5xnfSJB/Chat-GPT-Image-Jul-4-2025-05-26-29-AM.png"
-          alt="Side View" /></div>
-      <div class="slide"><img src="https://i.ibb.co/7x2KL1b4/Chat-GPT-Image-Jul-4-2025-04-56-16-AM.png"
-          alt="Pendant View" /></div>
-    </div>
-  </section>
-
-  <section class="section" data-aos="fade-up">
-    <h2>Why Choose NIVRA?</h2>
-    <div class="why-nirva">
-      <div class="card">Global Connectivity — Embedded SIM with coverage almost anywhere</div>
-      <div class="card">Zero Dependency — Works without a mobile app or WiFi</div>
-      <div class="card">Elegantly Safe — Blends into daily fashion, hides tech discreetly</div>
-    </div>
-  </section>
-
-  <section class="section" data-aos="fade-up">
-    <h2>Why the World Needs Nivra</h2>
-    <div class="features">
-      <div class="card"><strong>1 in 3</strong><br>Women and girls face harassment or unsafe situations daily</div>
-      <div class="card"><strong>80%</strong><br>Parents prefer screenless safety over GPS watches for their children
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge">Now in Beta — Limited spots available</div>
+      <h1>Your <em>automated</em> data team — without the team</h1>
+      <p class="hero-sub">Connect your data, get instant reports in Slack, clean exports in Google Sheets, and anomaly alerts — all on autopilot. No analyst needed.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20my%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-primary">Start Free Trial →</a>
+        <a href="#how" class="btn-secondary">See how it works</a>
       </div>
-      <div class="card"><strong>90%</strong><br>Feel safer with instant, visible response tools</div>
-      <div class="card"><strong>0</strong><br>Existing luxury safety wearables with GSM & audio</div>
+      <div class="hero-trust">
+        <div class="hero-trust-avatars">
+          <span>👨‍💼</span><span>👩‍💻</span><span>👨‍🔬</span><span>👩‍💼</span>
+        </div>
+        <span>Trusted by early beta teams</span>
+      </div>
     </div>
-  </section>
-
-  <section class="section" data-aos="fade-up">
-    <h2>Our Mission</h2>
-    <div class="card" style="text-align:center;">
-      <p>
-        Nivra was born from a single question:<br>
-        <em>“Why does safety have to look obvious — or belong only to adults?”</em><br><br>
-        We’re building a world where elegance and emergency can coexist — for everyone.<br>
-        Where protection is beautiful. Where confidence is wearable.<br>
-        We believe women, girls, children, and adults all deserve protection that’s just as elegant, subtle, and smart.
-      </p>
+    <div class="slack-preview">
+      <div class="slack-header">
+        <div class="slack-dot"></div><div class="slack-dot"></div><div class="slack-dot"></div>
+        <span class="slack-title">#all-data-team-bot</span>
+      </div>
+      <div class="slack-body">
+        <div class="slack-msg">
+          <div class="slack-avatar">🤖</div>
+          <div class="slack-msg-content">
+            <span class="slack-sender">Data Team Bot</span>
+            <span class="slack-time">Today at 8:00 AM</span>
+            <div class="slack-text">
+              <strong>📊 Sales Pipeline — Daily Report</strong><br/>
+              Monday, 11 March 2026 | Run <code>run_17728</code><br/><br/>
+              <strong>🔍 Data Quality</strong> <span class="green">✅</span><br/>
+              • Rows ingested: <strong>12,450</strong> → clean: <strong>12,441</strong><br/>
+              • Null rate: <strong>0.3%</strong> | Dropped: <strong>9</strong><br/><br/>
+              <strong>📈 Key Metrics</strong><br/>
+              • <strong>Revenue</strong>: avg ₹84,200 | max ₹4,20,000<br/>
+              • <strong>Leads</strong>: avg 142 | max 890<br/><br/>
+              <strong>🚨 Anomalies</strong> <span class="yellow">⚠️</span> <strong>3 detected</strong><br/>
+              • Row 441: <strong>Revenue</strong> = ₹4,20,000 (Z=4.2) <span class="red">HIGH</span>
+            </div>
+          </div>
+        </div>
+        <div class="slack-divider"></div>
+        <div class="slack-text" style="font-size:12px; color:#555; padding:0 4px;"><em>Virtual Data Team — automated — 2026-03-11</em></div>
+      </div>
     </div>
-  </section>
-<!--
-  <section class="cta-section" id="activate" data-aos="zoom-in">
-    Hidden iframe for Google Form 
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-    <h2 style="font-size:2.5rem;margin-bottom:1rem;">Preorder Nivra Now</h2>
-    <p style="font-size:1.2rem;color:var(--text-soft);margin-bottom:2rem;">Join our limited early access and be the
-      first to wear safety like royalty.</p>
-    <form class="waitlist-form"
-      action="https://docs.google.com/forms/d/e/1FAIpQLSd4O0wJ3y9NyaW-2fG8nczTQY9mtDh2b3Hgl089F2Lw1KMh-w/formResponse"
-      method="POST" target="hidden_iframe" onsubmit="joinWaitlist()">
-      <input type="text" name="entry.678040787" placeholder="Your name" required>
-      <input type="email" name="entry.1767494634" placeholder="Your best email" required>
-      <button type="submit">I’m in!</button>
-    </form>
-    <div class="thank-you">🎉 Thank you for joining the Nivra Waitlist! We'll keep you updated.</div>
-  </section>
--->
-  <section class="signup-section">
-    <h2>Stay Updated</h2>
-    <p class="signup-desc">
-      Sign up to receive updates, product launches, and early bird discounts.
-    </p>
-    <form class="signup-form" action="https://docs.google.com/forms/d/e/1FAIpQLSd4O0wJ3y9NyaW-2fG8nczTQY9mtDh2b3Hgl089F2Lw1KMh-w/formResponse" method="POST"
-      target="hidden_iframe_updates" onsubmit="signupThankYou(event)">
-      <input type="text" name="entry.678040787" 
-      placeholder="Your name"
-      required
-      autocomplete="name"
-      />
-      <input type="email" name="entry.1767494634" 
-      placeholder="Enter your email"
-      required
-      autocomplete="email"
-      />
-      <button type="submit">Subscribe</button>
-    </form>
-    <div class="signup-thankyou" style="display:none;">🎉 Thank you for subscribing!</div>
+  </div>
+</div>
 
-    <!-- Hidden iframe for Google Form submission -->
-    <iframe name="hidden_iframe_updates" id="hidden_iframe_updates" style="display:none;"></iframe>
-  </section>
+<div class="stat-bar">
+  <div class="stat-bar-inner">
+    <div><div class="stat-num">~15s</div><div class="stat-label">Average report delivery time</div></div>
+    <div><div class="stat-num">29K+</div><div class="stat-label">Rows processed per run</div></div>
+    <div><div class="stat-num">4</div><div class="stat-label">Auto-generated report tabs</div></div>
+    <div><div class="stat-num">0</div><div class="stat-label">Analysts required</div></div>
+  </div>
+</div>
 
+<section id="how">
+  <div class="section-label">How it works</div>
+  <h2>From raw data to Slack report<br/>in under 30 seconds</h2>
+  <p class="section-sub">No dashboards to build. No SQL to write. Just connect your data and let VDT handle the rest.</p>
+  <div class="how-wrapper">
+    <div class="how-step fade-up"><div class="how-num">01</div><div class="how-icon">🔌</div><h3>Connect your data</h3><p>Link your Google Sheets, database, or REST API. Takes 2 minutes.</p><div class="how-arrow">→</div></div>
+    <div class="how-step fade-up"><div class="how-num">02</div><div class="how-icon">⚙️</div><h3>Configure pipelines</h3><p>Name your pipeline, set your schedule, choose your Slack channel.</p><div class="how-arrow">→</div></div>
+    <div class="how-step fade-up"><div class="how-num">03</div><div class="how-icon">🤖</div><h3>VDT runs automatically</h3><p>Cleans data, detects anomalies, computes trends — fully automated.</p><div class="how-arrow">→</div></div>
+    <div class="how-step fade-up"><div class="how-num">04</div><div class="how-icon">📬</div><h3>Report lands in Slack</h3><p>Rich report in Slack + clean export in Google Sheets. Every time.</p></div>
+  </div>
+</section>
 
+<section id="features" style="background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%); max-width: 100%; padding: 100px 0;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 48px;">
+    <div class="section-label">Features</div>
+    <h2>Everything your data team does,<br/>automated</h2>
+    <p class="section-sub">Built for founders and operators who need data insights without hiring a data analyst.</p>
+    <div class="features-grid">
+      <div class="feature-card fade-up"><div class="feature-icon">💬</div><h3>Automated Slack Reports</h3><p>Beautiful, structured reports delivered to any Slack channel on your schedule — daily, weekly, or on-demand.</p></div>
+      <div class="feature-card fade-up"><div class="feature-icon">🚨</div><h3>Anomaly Detection & Alerts</h3><p>Statistical Z-score analysis flags unusual values instantly. Know when something's off before it becomes a problem.</p></div>
+      <div class="feature-card fade-up"><div class="feature-icon">📊</div><h3>Clean Data Exports</h3><p>Every run creates a fresh Google Sheet with cleaned data, handling logs, anomalies, and dashboard stats.</p></div>
+      <div class="feature-card fade-up"><div class="feature-icon">📅</div><h3>Scheduled + On-Demand</h3><p>Set it and forget it with schedules, or trigger any pipeline instantly via a simple form URL.</p></div>
+      <div class="feature-card fade-up"><div class="feature-icon">🔌</div><h3>No-Code Setup</h3><p>Connect Google Sheets, Postgres, MySQL, or any REST API. No engineering required — ever.</p></div>
+      <div class="feature-card fade-up"><div class="feature-icon">📈</div><h3>Trend Analysis</h3><p>Automatic time-series detection with slope calculations. Know if your metrics are going up, down, or flat.</p></div>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <div style="font-weight:500;font-size:1.05rem;">© 2025 Nivra | Personal Safety Meets Luxury.</div>
-    <div style="font-size:0.95rem;color:#5C5C5C;">Built with purpose. Backed by innovation. Open to vision-aligned
-      investors.</div>
-  </footer>
+<div class="pricing-section" id="pricing">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-label">Pricing</div>
+    <h2>Start free. Scale as you grow.</h2>
+    <p class="section-sub">3-day free trial on all plans. No credit card required.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card fade-up">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-price">₹2,999<span>/mo</span></div>
+        <div class="pricing-desc">Perfect for solo founders and small teams getting started with data.</div>
+        <ul class="pricing-features">
+          <li>1 pipeline</li>
+          <li>Daily Slack reports</li>
+          <li>Google Sheets export</li>
+          <li>Anomaly detection</li>
+          <li>On-demand triggers</li>
+          <li class="dim">Multiple pipelines</li>
+          <li class="dim">Priority support</li>
+        </ul>
+        <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20the%20Starter%20plan%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-plan">Start Free Trial</a>
+      </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1000, once: true });
-    function joinWaitlist() {
-      document.querySelector('.waitlist-form').style.display = 'none';
-      document.querySelector('.thank-you').style.display = 'block';
+      <div class="pricing-card featured fade-up">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-tier">Growth</div>
+        <div class="pricing-price">₹6,999<span>/mo</span></div>
+        <div class="pricing-desc">For growing teams that need multiple pipelines and deeper insights.</div>
+        <ul class="pricing-features">
+          <li>5 pipelines</li>
+          <li>Daily + weekly reports</li>
+          <li>Google Sheets export</li>
+          <li>Anomaly detection</li>
+          <li>On-demand triggers</li>
+          <li>Trend analysis</li>
+          <li>Email support</li>
+        </ul>
+        <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20the%20Growth%20plan%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-plan">Start Free Trial</a>
+      </div>
+
+      <div class="pricing-card fade-up">
+        <div class="pricing-tier">Scale</div>
+        <div class="pricing-price">₹9,999<span>/mo</span></div>
+        <div class="pricing-desc">For teams with complex data needs and multiple data sources.</div>
+        <ul class="pricing-features">
+          <li>Unlimited pipelines</li>
+          <li>Custom schedules</li>
+          <li>Google Sheets export</li>
+          <li>Anomaly detection</li>
+          <li>On-demand triggers</li>
+          <li>Trend analysis</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20the%20Scale%20plan%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-plan">Start Free Trial</a>
+      </div>
+    </div>
+    <p class="free-trial-note">🎉 <strong>3 days free</strong> on any plan — no credit card required. Cancel anytime.</p>
+  </div>
+</div>
+
+<section>
+  <div class="section-label">Testimonials</div>
+  <h2>What our beta users say</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"We replaced our weekly manual reporting process entirely. Reports now arrive in Slack before I even open my laptop."</div>
+      <div class="testimonial-author"><div class="testimonial-avatar">👨‍💼</div><div><div class="testimonial-name">Rahul Mehta</div><div class="testimonial-role">Founder, D2C Brand</div></div></div>
+    </div>
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"The anomaly detection caught a data entry error that would've cost us hours to debug. Paid for itself on day one."</div>
+      <div class="testimonial-author"><div class="testimonial-avatar">👩‍💻</div><div><div class="testimonial-name">Priya Sharma</div><div class="testimonial-role">Operations Lead, SaaS Startup</div></div></div>
+    </div>
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"Finally a tool built for non-technical founders. I connected my Google Sheet and had a report in Slack within 15 minutes."</div>
+      <div class="testimonial-author"><div class="testimonial-avatar">👨‍🔬</div><div><div class="testimonial-name">Amit Joshi</div><div class="testimonial-role">Co-founder, Fintech Startup</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="section-label">Get started</div>
+  <h2>Ready to automate your<br/><em>data reporting?</em></h2>
+  <p>Join beta users already saving hours every week with automated data reports.</p>
+  <div class="cta-actions">
+    <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20my%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-primary">Start Free Trial — 3 days free →</a>
+    <a href="#how" class="btn-secondary">Learn more</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-copy">© 2026 Virtual Data Team. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 100);
     }
-    document.querySelector('.waitlist-form button').addEventListener('click', joinWaitlist);
-  </script>
-  <script>
-    function signupThankYou(event) {
-      event.preventDefault();
-      document.querySelector('.signup-form').style.display = 'none';
-      document.querySelector('.signup-thankyou').style.display = 'block';
-      // For real projects: actually process/store the email here!
-      return false;
-    }
-  </script>
-
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 </body>
-
 </html>
