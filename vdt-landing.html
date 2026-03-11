@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Virtual Data Team — Automated Analytics for Growing Businesses</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #0c0c0f;
+  --surface: #131318;
+  --surface2: #1a1a22;
+  --border: rgba(255,255,255,0.07);
+  --accent: #00e5a0;
+  --accent2: #7c6bff;
+  --accent3: #ff6b6b;
+  --text: #f0f0f5;
+  --muted: #6b6b80;
+  --card: rgba(255,255,255,0.03);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── NOISE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.4;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(12,12,15,0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.logo span { color: var(--accent); }
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 32px;
+}
+
+nav ul a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+nav ul a:hover { color: var(--text); }
+
+.nav-cta {
+  background: var(--accent);
+  color: #000 !important;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600 !important;
+  font-size: 14px;
+  transition: opacity 0.2s !important;
+}
+
+.nav-cta:hover { opacity: 0.85; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(0,229,160,0.08) 0%, transparent 70%);
+  top: -200px; right: -200px;
+  pointer-events: none;
+}
+
+.hero-glow2 {
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(124,107,255,0.06) 0%, transparent 70%);
+  bottom: -100px; left: -100px;
+  pointer-events: none;
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,229,160,0.1);
+  border: 1px solid rgba(0,229,160,0.2);
+  color: var(--accent);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(40px, 5vw, 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+}
+
+h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.hero-sub {
+  font-size: 18px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 40px;
+  font-weight: 300;
+  max-width: 480px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #000;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,229,160,0.3);
+}
+
+.btn-secondary {
+  color: var(--text);
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 15px;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  transition: all 0.2s;
+  background: var(--card);
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.05);
+}
+
+.hero-trust {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.hero-trust-avatars {
+  display: flex;
+}
+
+.hero-trust-avatars span {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  margin-left: -8px;
+  background: var(--surface2);
+}
+
+.hero-trust-avatars span:first-child { margin-left: 0; }
+
+/* ── SLACK PREVIEW ── */
+.slack-preview {
+  background: #1a1d21;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.slack-header {
+  background: #19191d;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.slack-dot { width: 12px; height: 12px; border-radius: 50%; }
+.slack-dot:nth-child(1) { background: #ff5f57; }
+.slack-dot:nth-child(2) { background: #febc2e; }
+.slack-dot:nth-child(3) { background: #28c840; }
+
+.slack-title {
+  color: #aaaab4;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.slack-body { padding: 16px; }
+
+.slack-msg {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.slack-avatar {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.slack-msg-content {}
+.slack-sender { font-size: 13px; font-weight: 600; color: #d1d2d3; }
+.slack-time { font-size: 11px; color: #666; margin-left: 6px; }
+
+.slack-text {
+  font-size: 13px;
+  color: #c9c9d4;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.slack-text strong { color: #fff; }
+.slack-text .green { color: var(--accent); }
+.slack-text .yellow { color: #febc2e; }
+.slack-text .red { color: var(--accent3); }
+
+.slack-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.05);
+  margin: 12px 0;
+}
+
+/* ── SECTION BASE ── */
+section {
+  padding: 100px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.section-sub {
+  color: var(--muted);
+  font-size: 18px;
+  max-width: 560px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* ── HOW IT WORKS ── */
+.how-wrapper {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+
+.how-step {
+  background: var(--surface);
+  padding: 32px 28px;
+  position: relative;
+  border: 1px solid var(--border);
+  transition: border-color 0.3s;
+}
+
+.how-step:first-child { border-radius: 16px 0 0 16px; }
+.how-step:last-child { border-radius: 0 16px 16px 0; }
+
+.how-step:hover { border-color: rgba(0,229,160,0.3); }
+
+.how-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.05);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.how-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.how-step h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.how-step p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.how-arrow {
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px; height: 28px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #000;
+  z-index: 2;
+}
+
+.how-step:last-child .how-arrow { display: none; }
+
+/* ── FEATURES ── */
+.features-grid {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.feature-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.feature-card:hover {
+  border-color: rgba(0,229,160,0.2);
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.04);
+}
+
+.feature-card:hover::before { opacity: 1; }
+
+.feature-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+  background: rgba(0,229,160,0.1);
+}
+
+.feature-card:nth-child(2) .feature-icon { background: rgba(124,107,255,0.1); }
+.feature-card:nth-child(3) .feature-icon { background: rgba(255,107,107,0.1); }
+.feature-card:nth-child(4) .feature-icon { background: rgba(254,188,46,0.1); }
+.feature-card:nth-child(5) .feature-icon { background: rgba(0,229,160,0.1); }
+.feature-card:nth-child(6) .feature-icon { background: rgba(124,107,255,0.1); }
+
+.feature-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* ── PRICING ── */
+.pricing-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.pricing-section > * {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pricing-grid {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.pricing-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.15);
+}
+
+.pricing-card.featured {
+  border-color: var(--accent);
+  background: rgba(0,229,160,0.03);
+}
+
+.pricing-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #000;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 100px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pricing-tier {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.pricing-price {
+  font-family: 'Syne', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.pricing-price span {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0;
+}
+
+.pricing-desc {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pricing-features {
+  list-style: none;
+  margin-bottom: 32px;
+}
+
+.pricing-features li {
+  font-size: 14px;
+  color: var(--muted);
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pricing-features li::before {
+  content: '✓';
+  color: var(--accent);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.pricing-features li.dim::before { color: var(--muted); }
+.pricing-features li.dim { opacity: 0.5; }
+
+.btn-plan {
+  display: block;
+  text-align: center;
+  padding: 13px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: transparent;
+  cursor: pointer;
+}
+
+.btn-plan:hover {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.pricing-card.featured .btn-plan {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+}
+
+.pricing-card.featured .btn-plan:hover {
+  opacity: 0.85;
+}
+
+.free-trial-note {
+  text-align: center;
+  margin-top: 32px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.free-trial-note strong { color: var(--accent); }
+
+/* ── TESTIMONIALS ── */
+.testimonials-grid {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.testimonial-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.testimonial-stars {
+  color: #febc2e;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.testimonial-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.testimonial-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--surface2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.testimonial-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.testimonial-role {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ── CTA SECTION ── */
+.cta-section {
+  text-align: center;
+  padding: 120px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-glow {
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,229,160,0.1) 0%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.cta-section h2 {
+  max-width: 700px;
+  margin: 0 auto 20px;
+}
+
+.cta-section p {
+  color: var(--muted);
+  font-size: 18px;
+  max-width: 480px;
+  margin: 0 auto 40px;
+  font-weight: 300;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-copy {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--text); }
+
+/* ── STAT BAR ── */
+.stat-bar {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 48px;
+}
+
+.stat-bar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  text-align: center;
+}
+
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -1px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ── ANIMATIONS ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  nav ul { display: none; }
+  .hero { padding: 100px 24px 60px; }
+  .hero-content { grid-template-columns: 1fr; gap: 48px; }
+  section { padding: 60px 24px; }
+  .how-wrapper { grid-template-columns: 1fr 1fr; }
+  .features-grid { grid-template-columns: 1fr 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .stat-bar-inner { grid-template-columns: repeat(2, 1fr); }
+  footer { flex-direction: column; gap: 24px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">VDT<span>.</span></a>
+  <ul>
+    <li><a href="#how">How it works</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20my%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="nav-cta">Start Free Trial</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge">Now in Beta — Limited spots available</div>
+      <h1>Your <em>automated</em> data team — without the team</h1>
+      <p class="hero-sub">Connect your data, get instant reports in Slack, clean exports in Google Sheets, and anomaly alerts — all on autopilot. No analyst needed.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20my%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-primary">Start Free Trial →</a>
+        <a href="#how" class="btn-secondary">See how it works</a>
+      </div>
+      <div class="hero-trust">
+        <div class="hero-trust-avatars">
+          <span>👨‍💼</span>
+          <span>👩‍💻</span>
+          <span>👨‍🔬</span>
+          <span>👩‍💼</span>
+        </div>
+        <span>Trusted by early beta teams</span>
+      </div>
+    </div>
+
+    <!-- SLACK PREVIEW -->
+    <div class="slack-preview">
+      <div class="slack-header">
+        <div class="slack-dot"></div>
+        <div class="slack-dot"></div>
+        <div class="slack-dot"></div>
+        <span class="slack-title">#all-data-team-bot</span>
+      </div>
+      <div class="slack-body">
+        <div class="slack-msg">
+          <div class="slack-avatar">🤖</div>
+          <div class="slack-msg-content">
+            <span class="slack-sender">Data Team Bot</span>
+            <span class="slack-time">Today at 8:00 AM</span>
+            <div class="slack-text">
+              <strong>📊 Sales Pipeline — Daily Report</strong><br/>
+              Monday, 11 March 2026 | Run <code>run_17728</code><br/><br/>
+              <strong>🔍 Data Quality</strong> <span class="green">✅</span><br/>
+              • Rows ingested: <strong>12,450</strong> → clean: <strong>12,441</strong><br/>
+              • Null rate: <strong>0.3%</strong> | Dropped: <strong>9</strong><br/><br/>
+              <strong>📈 Key Metrics</strong><br/>
+              • <strong>Revenue</strong>: avg ₹84,200 | max ₹4,20,000<br/>
+              • <strong>Leads</strong>: avg 142 | max 890<br/><br/>
+              <strong>🚨 Anomalies</strong> <span class="yellow">⚠️</span> <strong>3 detected</strong><br/>
+              • Row 441: <strong>Revenue</strong> = ₹4,20,000 (Z=4.2) <span class="red">HIGH</span>
+            </div>
+          </div>
+        </div>
+        <div class="slack-divider"></div>
+        <div class="slack-text" style="font-size:12px; color: #555; padding: 0 4px;">
+          <em>Virtual Data Team — automated — 2026-03-11</em>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="stat-bar-inner">
+    <div>
+      <div class="stat-num">~15s</div>
+      <div class="stat-label">Average report delivery time</div>
+    </div>
+    <div>
+      <div class="stat-num">29K+</div>
+      <div class="stat-label">Rows processed per run</div>
+    </div>
+    <div>
+      <div class="stat-num">4</div>
+      <div class="stat-label">Auto-generated report tabs</div>
+    </div>
+    <div>
+      <div class="stat-num">0</div>
+      <div class="stat-label">Analysts required</div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-label">How it works</div>
+  <h2>From raw data to Slack report<br/>in under 30 seconds</h2>
+  <p class="section-sub">No dashboards to build. No SQL to write. Just connect your data and let VDT handle the rest.</p>
+  <div class="how-wrapper">
+    <div class="how-step fade-up">
+      <div class="how-num">01</div>
+      <div class="how-icon">🔌</div>
+      <h3>Connect your data</h3>
+      <p>Link your Google Sheets, database, or REST API. Takes 2 minutes.</p>
+      <div class="how-arrow">→</div>
+    </div>
+    <div class="how-step fade-up">
+      <div class="how-num">02</div>
+      <div class="how-icon">⚙️</div>
+      <h3>Configure pipelines</h3>
+      <p>Name your pipeline, set your schedule, choose your Slack channel.</p>
+      <div class="how-arrow">→</div>
+    </div>
+    <div class="how-step fade-up">
+      <div class="how-num">03</div>
+      <div class="how-icon">🤖</div>
+      <h3>VDT runs automatically</h3>
+      <p>Cleans data, detects anomalies, computes trends — fully automated.</p>
+      <div class="how-arrow">→</div>
+    </div>
+    <div class="how-step fade-up">
+      <div class="how-num">04</div>
+      <div class="how-icon">📬</div>
+      <h3>Report lands in Slack</h3>
+      <p>Rich report in Slack + clean export in Google Sheets. Every time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" style="background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%); max-width: 100%; padding: 100px 0;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 48px;">
+    <div class="section-label">Features</div>
+    <h2>Everything your data team does,<br/>automated</h2>
+    <p class="section-sub">Built for founders and operators who need data insights without hiring a data analyst.</p>
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="feature-icon">💬</div>
+        <h3>Automated Slack Reports</h3>
+        <p>Beautiful, structured reports delivered to any Slack channel on your schedule — daily, weekly, or on-demand.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🚨</div>
+        <h3>Anomaly Detection & Alerts</h3>
+        <p>Statistical Z-score analysis flags unusual values instantly. Know when something's off before it becomes a problem.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">📊</div>
+        <h3>Clean Data Exports</h3>
+        <p>Every run creates a fresh Google Sheet with cleaned data, handling logs, anomalies, and dashboard stats.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">📅</div>
+        <h3>Scheduled + On-Demand</h3>
+        <p>Set it and forget it with schedules, or trigger any pipeline instantly via a simple form URL.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🔌</div>
+        <h3>No-Code Setup</h3>
+        <p>Connect Google Sheets, Postgres, MySQL, or any REST API. No engineering required — ever.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">📈</div>
+        <h3>Trend Analysis</h3>
+        <p>Automatic time-series detection with slope calculations. Know if your metrics are going up, down, or flat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<div class="pricing-section" id="pricing">
+  <section style="max-width:1200px; margin:0 auto;">
+    <div class="section-label">Pricing</div>
+    <h2>Start free. Scale as you grow.</h2>
+    <p class="section-sub">3-day free trial on all plans. No credit card required.</p>
+    <div class="pricing-grid">
+
+      <!-- STARTER -->
+      <div class="pricing-card fade-up">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-price">₹2,999<span>/mo</span></div>
+        <div class="pricing-desc">Perfect for solo founders and small teams getting started with data.</div>
+        <ul class="pricing-features">
+          <li>1 pipeline</li>
+          <li>Daily Slack reports</li>
+          <li>Google Sheets export</li>
+          <li>Anomaly detection</li>
+          <li>On-demand triggers</li>
+          <li class="dim">Multiple pipelines</li>
+          <li class="dim">Priority support</li>
+        </ul>
+        <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20the%20Starter%20plan%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-plan">Start Free Trial</a>
+      <div class="pricing-card featured fade-up">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-tier">Growth</div>
+        <div class="pricing-price">₹6,999<span>/mo</span></div>
+        <div class="pricing-desc">For growing teams that need multiple pipelines and deeper insights.</div>
+        <ul class="pricing-features">
+          <li>5 pipelines</li>
+          <li>Daily + weekly reports</li>
+          <li>Google Sheets export</li>
+          <li>Anomaly detection</li>
+          <li>On-demand triggers</li>
+          <li>Trend analysis</li>
+          <li>Email support</li>
+        </ul>
+        <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20the%20Growth%20plan%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-plan">Start Free Trial</a>
+      </div>
+
+      <!-- SCALE -->
+      <div class="pricing-card fade-up">
+        <div class="pricing-tier">Scale</div>
+        <div class="pricing-price">₹9,999<span>/mo</span></div>
+        <div class="pricing-desc">For teams with complex data needs and multiple data sources.</div>
+        <ul class="pricing-features">
+          <li>Unlimited pipelines</li>
+          <li>Custom schedules</li>
+          <li>Google Sheets export</li>
+          <li>Anomaly detection</li>
+          <li>On-demand triggers</li>
+          <li>Trend analysis</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20the%20Scale%20plan%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-plan">Start Free Trial</a>🎉 <strong>3 days free</strong> on any plan — no credit card required. Cancel anytime.</p>
+  </section>
+</div>
+
+<!-- TESTIMONIALS -->
+<section>
+  <div class="section-label">Testimonials</div>
+  <h2>What our beta users say</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"We replaced our weekly manual reporting process entirely. Reports now arrive in Slack before I even open my laptop."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">👨‍💼</div>
+        <div>
+          <div class="testimonial-name">Rahul Mehta</div>
+          <div class="testimonial-role">Founder, D2C Brand</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"The anomaly detection caught a data entry error that would've cost us hours to debug. Paid for itself on day one."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">👩‍💻</div>
+        <div>
+          <div class="testimonial-name">Priya Sharma</div>
+          <div class="testimonial-role">Operations Lead, SaaS Startup</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"Finally a tool built for non-technical founders. I connected my Google Sheet and had a report in Slack within 15 minutes."</div>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">👨‍🔬</div>
+        <div>
+          <div class="testimonial-name">Amit Joshi</div>
+          <div class="testimonial-role">Co-founder, Fintech Startup</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="section-label">Get started</div>
+  <h2>Ready to automate your<br/><em>data reporting?</em></h2>
+  <p>Join beta users already saving hours every week with automated data reports.</p>
+  <div class="cta-actions">
+    <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20my%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-primary">Start Free Trial — 3 days free →</a>
+    <a href="#how" class="btn-secondary">Learn more</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">© 2026 Virtual Data Team. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+<script>
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, i * 100);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
