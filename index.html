@@ -654,6 +654,83 @@ h2 {
 
 .free-trial-note strong { color: var(--accent); }
 
+/* ── CONTACT BAR ── */
+.contact-bar {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 16px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.contact-bar-label {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+}
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.contact-item:hover { color: var(--accent); }
+.contact-item span { font-size: 16px; }
+
+/* ── DUAL CTA ── */
+.dual-cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.btn-form {
+  background: transparent;
+  color: var(--text);
+  padding: 13px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-form:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(0,229,160,0.05);
+}
+.btn-wa {
+  background: #25D366;
+  color: #000;
+  padding: 13px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  border: none;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-wa:hover { opacity: 0.88; transform: translateY(-2px); }
+@media (max-width: 900px) {
+  .contact-bar { padding: 16px 24px; gap: 16px; }
+  .dual-cta { flex-direction: column; width: 100%; }
+  .btn-form, .btn-wa { width: 100%; justify-content: center; }
+}
+
 /* ── TESTIMONIALS ── */
 .testimonials-grid {
   margin-top: 64px;
@@ -981,7 +1058,7 @@ footer {
     <li><a href="#features">Features</a></li>
     <li><a href="#pricing">Pricing</a></li>
   </ul>
-  <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20my%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="nav-cta">Start Free Trial</a>
+  <a href="https://forms.gle/exmyJCidy7NBFiVo6" target="_blank" class="nav-cta">Start Free Trial</a>
 </nav>
 
 <!-- HERO -->
@@ -994,8 +1071,10 @@ footer {
       <h1>Your <em>automated</em> data team — without the team</h1>
       <p class="hero-sub">Connect your data, get instant reports in Slack, clean exports in Google Sheets, and anomaly alerts — all on autopilot. No analyst needed.</p>
       <div class="hero-actions">
-        <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20my%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-primary">Start Free Trial →</a>
-        <a href="#how" class="btn-secondary">See how it works</a>
+        <div class="dual-cta">
+          <a href="https://forms.gle/exmyJCidy7NBFiVo6" target="_blank" class="btn-primary">Start Free Trial →</a>
+          <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20my%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-wa">💬 WhatsApp Us</a>
+        </div>
       </div>
       <div class="hero-trust">
         <div class="hero-trust-avatars">
@@ -1166,7 +1245,10 @@ footer {
           <li class="dim">Multiple pipelines</li>
           <li class="dim">Priority support</li>
         </ul>
-        <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20the%20Starter%20plan%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-plan">Start Free Trial</a>
+        <div class="dual-cta">
+          <a href="https://forms.gle/exmyJCidy7NBFiVo6" target="_blank" class="btn-plan">📋 Apply via Form</a>
+          <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20the%20Starter%20plan%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-wa" style="font-size:13px; padding:10px 16px;">💬 WhatsApp</a>
+        </div>
       </div>
 
       <!-- GROWTH -->
@@ -1184,7 +1266,10 @@ footer {
           <li>Trend analysis</li>
           <li>Email support</li>
         </ul>
-        <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20the%20Growth%20plan%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-plan">Start Free Trial</a>
+        <div class="dual-cta">
+          <a href="https://forms.gle/exmyJCidy7NBFiVo6" target="_blank" class="btn-plan">📋 Apply via Form</a>
+          <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20the%20Growth%20plan%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-wa" style="font-size:13px; padding:10px 16px;">💬 WhatsApp</a>
+        </div>
       </div>
 
       <!-- SCALE -->
@@ -1201,7 +1286,10 @@ footer {
           <li>Trend analysis</li>
           <li>Priority support</li>
         </ul>
-        <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20the%20Scale%20plan%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-plan">Start Free Trial</a>
+        <div class="dual-cta">
+          <a href="https://forms.gle/exmyJCidy7NBFiVo6" target="_blank" class="btn-plan">📋 Apply via Form</a>
+          <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20the%20Scale%20plan%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-wa" style="font-size:13px; padding:10px 16px;">💬 WhatsApp</a>
+        </div>
       </div>
     </div>
     <p class="free-trial-note">🎉 <strong>3 days free</strong> on any plan — no credit card required. Cancel anytime.</p>
@@ -1223,9 +1311,10 @@ footer {
       </div>
       <div class="template-right">
         <div class="template-price-box">
-          <div class="template-price">₹19,999</div>
+          <div class="template-price">₹19,000</div>
           <div class="template-price-note">one-time · no subscription</div>
-          <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20buy%20the%20VDT%20workflow%20template%20for%20%E2%82%B919%2C999!" target="_blank" class="btn-template">Buy Now → Get Instant Access</a>
+          <a href="https://forms.gle/exmyJCidy7NBFiVo6" target="_blank" class="btn-template">📋 Buy via Form → Get Instant Access</a>
+          <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20buy%20the%20VDT%20workflow%20template%20for%20%E2%82%B919%2C999!" target="_blank" class="btn-wa" style="margin-top:10px; display:block; text-align:center; border-radius:10px; padding:12px; font-weight:600; font-size:13px; text-decoration:none; color:#000;">💬 WhatsApp to Buy</a>
           <p class="template-fine">Delivered via WhatsApp within 30 minutes of payment</p>
         </div>
       </div>
@@ -1282,34 +1371,33 @@ footer {
   <h2>Ready to automate your<br/><em>data reporting?</em></h2>
   <p>Join beta users already saving hours every week with automated data reports.</p>
   <div class="cta-actions">
-    <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20my%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-primary">Start Free Trial — 3 days free →</a>
+    <a href="https://forms.gle/exmyJCidy7NBFiVo6" target="_blank" class="btn-primary">📋 Start Free Trial — Apply Now →</a>
+    <a href="https://wa.me/917798598715?text=Hi%2C%20I%27d%20like%20to%20start%20my%20free%20trial%20of%20Virtual%20Data%20Team!" target="_blank" class="btn-wa">💬 WhatsApp Us</a>
     <a href="#how" class="btn-secondary">Learn more</a>
   </div>
 </div>
 
+<!-- CONTACT BAR -->
+<div class="contact-bar">
+  <span class="contact-bar-label">Reach us directly:</span>
+  <a href="https://wa.me/917798598715" target="_blank" class="contact-item">
+    <span>💬</span> WhatsApp: +91 77985 98715
+  </a>
+  <a href="/cdn-cgi/l/email-protection#365243445153455e45575f5852575853764453584f4e5f451855595b" class="contact-item">
+    <span>✉️</span> <span class="__cf_email__" data-cfemail="f69283849193859e85979f9892979893b68493988f8e9f85d895999b">[email&#160;protected]</span>
+  </a>
+  <a href="https://forms.gle/exmyJCidy7NBFiVo6" target="_blank" class="contact-item">
+    <span>📋</span> Fill the Form
+  </a>
+</div>
+
 <!-- FOOTER -->
 <footer>
-  <div class="footer-copy">© 2026 VDT By Renyxis Solutions Pvt Ltd. All rights reserved.</div>
+  <div class="footer-copy">© 2026 Renyxis Solutions Pvt Ltd. All rights reserved.</div>
   <div class="footer-links">
     <a href="#">Privacy</a>
     <a href="#">Terms</a>
-    <a href="#">Contact</a>
-  </div>
-</footer>
-
-<script>
-// Scroll animations
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => {
-        entry.target.classList.add('visible');
-      }, i * 100);
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-</script>
-</body>
-</html>
+    <a href="https://wa.me/917798598715" target="_blank">WhatsApp</a>
+    <a href="/cdn-cgi/l/email-protection#99fdecebfefceaf1eaf8f0f7fdf8f7fcd9ebfcf7e0e1f0eab7faf6f4">Email</a>
+    <a href="https://forms.gle/exmyJCidy7NBFiVo6" target="_blank">Contact Form</a>
+  </di
