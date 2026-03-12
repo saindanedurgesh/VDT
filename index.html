@@ -524,6 +524,16 @@ h2 {
   }
 }
 
+@media (max-width: 768px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 .pricing-card {
   background: var(--bg);
   border: 1px solid var(--border);
@@ -1016,8 +1026,11 @@ footer {
 
 @media (max-width: 900px) {
   .pricing-grid { grid-template-columns: 1fr; gap: 16px; max-width: 420px; margin-left: auto; margin-right: auto; }
-.pricing-card { padding: 28px 24px; }
-.pricing-price { font-size: 36px; }
+  .pricing-card { padding: 28px 24px; }
+  .pricing-price { font-size: 36px; }
+  .template-card { flex-direction: column; }
+  .template-right { width: 100%; }
+  .template-features { grid-template-columns: 1fr; }
 }
 
 
@@ -1040,9 +1053,9 @@ footer {
   section { padding: 60px 24px; }
   .how-wrapper { grid-template-columns: 1fr 1fr; }
   .features-grid { grid-template-columns: 1fr 1fr; }
-  .pricing-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .pricing-card { padding: 20px 12px; }
-  .pricing-price { font-size: 32px; }
+  .pricing-grid { grid-template-columns: 1fr; gap: 16px; max-width: 420px; margin-left: auto; margin-right: auto; }
+  .pricing-card { padding: 28px 24px; }
+  .pricing-price { font-size: 36px; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .stat-bar-inner { grid-template-columns: repeat(2, 1fr); }
   footer { flex-direction: column; gap: 24px; text-align: center; }
@@ -1399,6 +1412,4 @@ footer {
     <a href="#">Privacy</a>
     <a href="#">Terms</a>
     <a href="https://wa.me/917798598715" target="_blank">WhatsApp</a>
-    <a href="/cdn-cgi/l/email-protection#99fdecebfefceaf1eaf8f0f7fdf8f7fcd9ebfcf7e0e1f0eab7faf6f4">Email</a
-    <a href="https://forms.gle/exmyJCidy7NBFiVo6" target="_blank">Contact Form</a>
-  </di
+    <a href="/cdn-cgi/l/email-protection#99fdec
